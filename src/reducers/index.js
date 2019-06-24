@@ -1,5 +1,6 @@
 export const initialState = {
-  books: []
+  books: [],
+  logginIn: false
 };
 
 export const rootReducer = (state = initialState, action) => {
