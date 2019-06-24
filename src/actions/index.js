@@ -1,13 +1,16 @@
 import axios from 'axios';
 
-export const FETCH_START = 'FETCH_START';
-export const FETCH_SUCCESS = 'FETCH_SUCCESS';
-export const FETCH_ERROR = 'FETCH_ERROR';
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
 
-export const login = creds => dispatch => {
-  dispatch({type: FETCH_START});
+export const login = state => dispatch => {
+  dispatch({type: LOGIN_START});
   return axios
-    .post('https://api-bookr.herokuapp.com/api/auth/login', creds)
-    .then(res => console.log(res))
+    .post('https://api-bookr.herokuapp.com/api/auth/login', state)
+    .then(res => {
+      localStorage.setItem('token', res.data.payload);
+      dispatch({type: LOGIN_SUCCESS, payload: res.data.payload});
+    })
     .catch();
 };

@@ -1,8 +1,27 @@
+import {LOGIN_START, LOGIN_SUCCESS} from '../actions';
+
 export const initialState = {
   books: [],
-  logginIn: false
+  loggingIn: false,
+  error: '',
+  token: localStorage.getItem('token')
 };
 
 export const rootReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case LOGIN_START:
+      return {
+        ...state,
+        loggingIn: true
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loggingIn: false,
+        token: action.payload
+      };
+
+    default:
+      return state;
+  }
 };

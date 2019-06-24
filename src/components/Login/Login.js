@@ -4,27 +4,22 @@ import {connect} from 'react-redux';
 
 class Login extends Component {
   state = {
-    credentials: {
-      email: '',
-      password: ''
-    }
+    email: '',
+    password: ''
   };
 
   handleChange = event => {
     this.setState({
-      ...this.state.credentials,
       [event.target.name]: event.target.value
     });
   };
 
   login = event => {
     event.preventDefault();
-    this.props.login(this.state.credentials);
+    this.props.login(this.state);
     this.setState({
-      credentials: {
-        email: '',
-        password: ''
-      }
+      email: '',
+      password: ''
     });
   };
 
@@ -38,7 +33,7 @@ class Login extends Component {
             name='email'
             placeholder='Enter email'
             className='input'
-            value={this.state.credentials.username}
+            value={this.state.username}
           />
           <input
             type='password'
@@ -46,18 +41,18 @@ class Login extends Component {
             name='password'
             placeholder='Enter password'
             className='input'
-            value={this.state.credentials.password}
+            value={this.state.password}
           />
-          <button className='btn'>Sign In</button>
+          <button className='btn'>LogIn</button>
         </form>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({loggingIn}) => {
   return {
-    logginIn: state.logginIn
+    loggingIn: loggingIn
   };
 };
 
