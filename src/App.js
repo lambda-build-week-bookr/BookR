@@ -1,13 +1,21 @@
 import React from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 import Login from './components/Login/Login';
+import BookList from './components/BookList/BookList';
+import SignUp from './components/SignUp/SignUp';
 import './App.css';
 
 function App() {
   return (
-    <div className='App'>
-      <Login />
-    </div>
+    <Router>
+      <div className='App'>
+        <Route path='/signup' component={SignUp} />
+        <PrivateRoute path='/booklist' component={BookList} />
+        <PrivateRoute path='/login' component={Login} />
+      </div>
+    </Router>
   );
 }
 

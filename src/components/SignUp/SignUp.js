@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {login} from '../../actions/index';
 import {connect} from 'react-redux';
 
-class Login extends Component {
+import {signup} from '../../actions/index';
+
+class SignUp extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    username: ''
   };
 
   handleChange = event => {
@@ -14,29 +16,38 @@ class Login extends Component {
     });
   };
 
-  login = event => {
+  signup = event => {
     event.preventDefault();
-    this.props.login(this.state).then(res => {
+    this.props.signup(this.state).then(res => {
       if (res) {
-        console.log(res);
-        this.props.history.push('/booklist');
+        this.props.history.push('/login');
       }
     });
+
     this.setState({
       email: '',
+      username: '',
       password: ''
     });
   };
 
   render() {
     return (
-      <div className='login-container'>
-        <form className='form' onSubmit={this.login}>
+      <div className='signup-container'>
+        <form className='form' onSubmit={this.signup}>
           <input
             type='text'
             onChange={this.handleChange}
             name='email'
             placeholder='Enter email'
+            className='input'
+            value={this.state.email}
+          />
+          <input
+            type='text'
+            onChange={this.handleChange}
+            name='username'
+            placeholder='Enter username'
             className='input'
             value={this.state.username}
           />
@@ -48,20 +59,20 @@ class Login extends Component {
             className='input'
             value={this.state.password}
           />
-          <button className='btn'>LogIn</button>
+          <button className='btn'>signup</button>
         </form>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({loggingIn}) => {
+const mapStateToProps = ({users}) => {
   return {
-    loggingIn: loggingIn
+    users
   };
 };
 
 export default connect(
   mapStateToProps,
-  {login}
-)(Login);
+  {signup}
+)(SignUp);
