@@ -16,12 +16,7 @@ class Login extends Component {
 
   login = event => {
     event.preventDefault();
-    this.props.login(this.state).then(res => {
-      if (res) {
-        console.log(res);
-        this.props.history.push('/booklist');
-      }
-    });
+    this.props.login(this.state).then(() => this.props.history.push('/booklist'));
     this.setState({
       email: '',
       password: ''

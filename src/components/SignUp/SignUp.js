@@ -18,11 +18,7 @@ class SignUp extends Component {
 
   signup = event => {
     event.preventDefault();
-    this.props.signup(this.state).then(res => {
-      if (res) {
-        this.props.history.push('/login');
-      }
-    });
+    this.props.signup(this.state).then(() => this.props.history.push('/login'));
 
     this.setState({
       email: '',
