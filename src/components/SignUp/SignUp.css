@@ -1,0 +1,29 @@
+.signup-container {
+  padding: 120px 0;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  box-shadow: 0 5px 10px #ccc;
+}
+
+.input {
+  width: 300px;
+  margin-top: 30px;
+  padding: 10px;
+}
+.btn {
+  width: 200px;
+  margin-top: 20px;
+  padding: 10px;
+}
+p {
+  font-size: 13px;
+  margin-top: 5px;
+}
+p span {
+  color: blue;
+}

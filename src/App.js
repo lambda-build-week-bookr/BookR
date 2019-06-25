@@ -10,10 +10,11 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <div className='App'>
+      <div className='App container'>
+        <BookList />
         <Route path='/signup' component={SignUp} />
         <PrivateRoute path='/booklist' component={BookList} />
-        <PrivateRoute path='/login' component={Login} />
+        <Route path='/login' component={Login} />
       </div>
     </Router>
   );

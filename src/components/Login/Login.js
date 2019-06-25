@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {login} from '../../actions/index';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+
+import './Login.css';
 
 class Login extends Component {
   state = {
@@ -26,7 +29,9 @@ class Login extends Component {
   render() {
     return (
       <div className='login-container'>
-        <form className='form' onSubmit={this.login}>
+        <form className='form container' onSubmit={this.login}>
+          <h2 className='text-warning'>BookR</h2>
+
           <input
             type='text'
             onChange={this.handleChange}
@@ -34,6 +39,7 @@ class Login extends Component {
             placeholder='Enter email'
             className='input'
             value={this.state.username}
+            required
           />
           <input
             type='password'
@@ -42,8 +48,17 @@ class Login extends Component {
             placeholder='Enter password'
             className='input'
             value={this.state.password}
+            required
           />
-          <button className='btn'>LogIn</button>
+          <button className='btn btn-primary'>LogIn</button>
+
+          <p>
+            Not registered?
+            <Link to='/signup'>
+              {' '}
+              <span className='account'>Create an account</span>{' '}
+            </Link>
+          </p>
         </form>
       </div>
     );
