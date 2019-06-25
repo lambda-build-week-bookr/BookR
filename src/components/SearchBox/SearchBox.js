@@ -1,4 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
+import {search} from '../../actions/index';
+
 import './SearchBox.css';
 
 class SearchBox extends Component {
@@ -12,10 +16,10 @@ class SearchBox extends Component {
     });
   };
 
-  onSubmit = e => {
-    e.prevent.default();
-
-    this.props.searchItem();
+  searchItem = e => {
+    e.preventDefault();
+    if (this.state.searchItem.length === 0) return this.props.search('');
+    this.props.search(this.state.searchItem);
   };
 
   render() {
@@ -35,5 +39,13 @@ class SearchBox extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    books: state.books
+  };
+};
 
-export default SearchBox;
+export default connect(
+  mapStateToProps,
+  {search}
+)(SearchBox);

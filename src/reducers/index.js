@@ -8,7 +8,8 @@ import {
   LOGIN_ERROR,
   SIGNUP_ERROR,
   GET_ERROR,
-  LOGOUT
+  LOGOUT,
+  SEARCH
 } from '../actions';
 
 export const initialState = {
@@ -69,6 +70,7 @@ export const rootReducer = (state = initialState, action) => {
         gettingBook: true
       };
     case GET_SUCCESS:
+      console.log(state);
       return {
         ...state,
         gettingBooks: false,
@@ -86,6 +88,15 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         logout: true,
         token: localStorage.clear()
+      };
+
+    case SEARCH:
+      console.log(state.books);
+      return {
+        ...state,
+        books: state.books.filter(book =>
+          action.payload.toLowerCase().includes(state.books.title.toLowerCase())
+        )
       };
     default:
       return state;

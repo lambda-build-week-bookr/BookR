@@ -6,7 +6,17 @@
   background: #7691b9;
   color: white;
   margin-top: -10px;
+  display: flex;
 }
 .book-container {
   margin: 10px;
+}
+.book-detail {
+  margin-left: 15px;
+}
+.img {
+  width: 100px;
+}
+.img img {
+  width: 100%;
 }

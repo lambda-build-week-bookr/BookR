@@ -15,6 +15,8 @@ export const GET_ERROR = 'GET_ERROR';
 
 export const LOGOUT = 'LOGOUT';
 
+export const SEARCH = 'SEARCH';
+
 export const login = state => dispatch => {
   dispatch({type: LOGIN_START});
   return axiosWithAuth()
@@ -55,5 +57,12 @@ export const getBooks = () => dispatch => {
 export const logout = () => {
   return {
     type: LOGOUT
+  };
+};
+
+export const search = title => {
+  return {
+    type: SEARCH,
+    payload: title
   };
 };

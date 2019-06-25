@@ -5,9 +5,13 @@ const Book = props => {
   return (
     <div className='book-container'>
       <div className='book '>
-        <h5>{props.book.title}</h5>
-        <h5>{props.book.publisher}</h5>
-        <h5>{props.book.edition}</h5>
+        <div className='img'>
+          <img src={props.book.cover} />
+        </div>
+        <div className='book-detail'>
+          <h6>{props.book.title}</h6>
+          <p>{props.book.publisher}</p>
+        </div>
       </div>
     </div>
   );
