@@ -11,11 +11,9 @@ function App() {
   return (
     <Router>
       <div className='App container'>
-        <BookList />
-        <Route path='/signup' component={SignUp} />
-        <PrivateRoute path='/booklist' component={BookList} />
-        <Route path='/login' component={Login} />
-        <Route exact path='/' component={Login} />
+        <Route exact path='/signup' component={SignUp} />
+        <PrivateRoute exact path='/booklist' component={BookList} />
+        <Route exact path='/login' component={Login} />
       </div>
     </Router>
   );

@@ -7,7 +7,8 @@ import {
   GET_SUCCESS,
   LOGIN_ERROR,
   SIGNUP_ERROR,
-  GET_ERROR
+  GET_ERROR,
+  LOGOUT
 } from '../actions';
 
 export const initialState = {
@@ -17,7 +18,8 @@ export const initialState = {
   signingUp: false,
   gettingBook: false,
   error: '',
-  token: localStorage.getItem('token')
+  token: localStorage.getItem('token'),
+  Logout: false
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -77,6 +79,13 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         gettingBooks: false,
         err: action.payload
+      };
+    case LOGOUT:
+      console.log(state.token);
+      return {
+        ...state,
+        logout: true,
+        token: localStorage.clear()
       };
     default:
       return state;

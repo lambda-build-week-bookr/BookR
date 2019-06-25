@@ -13,6 +13,8 @@ export const GET_START = 'GET_START';
 export const GET_SUCCESS = 'GET_SUCCESS';
 export const GET_ERROR = 'GET_ERROR';
 
+export const LOGOUT = 'LOGOUT';
+
 export const login = state => dispatch => {
   dispatch({type: LOGIN_START});
   return axiosWithAuth()
@@ -48,4 +50,10 @@ export const getBooks = () => dispatch => {
       dispatch({type: GET_SUCCESS, payload: res.data.books});
     })
     .catch(err => ({type: GET_ERROR, payload: err.response}));
+};
+
+export const logout = () => {
+  return {
+    type: LOGOUT
+  };
 };
