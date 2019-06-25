@@ -1,0 +1,12 @@
+.book {
+  height: 200px;
+  width: 350px;
+  box-shadow: 0 5px 10px #ccc;
+  padding: 5px;
+  background: #7691b9;
+  color: white;
+  margin-top: -10px;
+}
+.book-container {
+  margin: 10px;
+}

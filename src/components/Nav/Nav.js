@@ -3,14 +3,17 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {logout} from '../../actions/index';
+import './Navigation.css';
 
 const Nav = props => {
   return (
-    <div>
-      <Link onClick={() => props.logout()} to='/login'>
+    <div className='navigation'>
+      <Link className='home' to='/booklist'>
+        Home
+      </Link>
+      <Link className='home' onClick={() => props.logout()} to='/login'>
         Logout
       </Link>
-      <Link to='/booklist'>Home</Link>
     </div>
   );
 };

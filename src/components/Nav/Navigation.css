@@ -1,0 +1,19 @@
+.navigation {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+.home {
+  margin-right: 20px;
+
+  height: 100%;
+  padding: 8px 20px;
+  box-sizing: border-box;
+
+  color: black;
+  font-weight: bold;
+}
+
+.home:hover {
+  color: rgb(43, 68, 177);
+}

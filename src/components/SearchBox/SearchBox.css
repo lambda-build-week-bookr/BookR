@@ -1,0 +1,10 @@
+.search-box {
+  padding: 30px;
+  background: #ffc886;
+  text-align: center;
+}
+
+.input {
+  border-radius: 10px;
+  border: none;
+}

@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 // import {connect} from 'react-redux';
+import './BookList.css';
 
 import {books} from '../DummyBook/DummyBook';
 // import {getBooks} from '../../actions/index';
 import Nav from '../Nav/Nav';
 import Book from '../Book/Book';
+import SearchBox from '../SearchBox/SearchBox';
 
 class BookList extends Component {
   state = {
@@ -22,9 +24,15 @@ class BookList extends Component {
     return (
       <div>
         <Nav />
-        {this.state.books.map(book => {
-          return <Book book={book} />;
-        })}
+        <SearchBox />
+        <div className='booklist-container'>
+          <h2 className='text-center py-3'>BookList</h2>
+          <div className='booklist'>
+            {this.state.books.map(book => {
+              return <Book book={book} />;
+            })}
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,0 +1,39 @@
+import React, {Component} from 'react';
+import './SearchBox.css';
+
+class SearchBox extends Component {
+  state = {
+    searchItem: ''
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  onSubmit = e => {
+    e.prevent.default();
+
+    this.props.searchItem();
+  };
+
+  render() {
+    return (
+      <div className='search-box'>
+        <form onSubmit={this.searchItem}>
+          <input
+            type='text'
+            placeholder='Search title....'
+            value={this.state.searchItem}
+            name='searchItem'
+            onChange={this.handleChange}
+            className='input'
+          />
+        </form>
+      </div>
+    );
+  }
+}
+
+export default SearchBox;
