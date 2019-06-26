@@ -1,26 +1,19 @@
 import React, {Component} from 'react';
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 import './BookList.css';
 
-import {books} from '../DummyBook/DummyBook';
-// import {getBooks} from '../../actions/index';
+import {getBooks} from '../../actions/index';
 import Nav from '../Nav/Nav';
 import Book from '../Book/Book';
 import SearchBox from '../SearchBox/SearchBox';
 
 class BookList extends Component {
-  state = {
-    books: []
-  };
   componentDidMount() {
-    // this.props.getBooks();
-    this.setState({
-      books: books
-    });
+    this.props.getBooks();
   }
 
   render() {
-    // console.log(this.props.books);
+    console.log(this.props.books);
     return (
       <div>
         <Nav />
@@ -28,7 +21,7 @@ class BookList extends Component {
         <div className='booklist-container'>
           <h2 className='text-center py-3'>BookList</h2>
           <div className='booklist'>
-            {this.state.books.map(book => {
+            {this.props.books.map(book => {
               return <Book book={book} />;
             })}
           </div>
@@ -38,15 +31,13 @@ class BookList extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     books: state.books
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    books: state.books
+  };
+};
 
-// export default connect(
-//   mapStateToProps,
-//   {getBooks}
-// )(BookList);
-
-export default BookList;
+export default connect(
+  mapStateToProps,
+  {getBooks}
+)(BookList);

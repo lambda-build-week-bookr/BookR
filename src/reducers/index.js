@@ -9,7 +9,10 @@ import {
   SIGNUP_ERROR,
   GET_ERROR,
   LOGOUT,
-  SEARCH
+  SEARCH,
+  GET_SUCCESSBOOK,
+  GET_ERRORBOOK,
+  GET_STARTBOOK
 } from '../actions';
 
 export const initialState = {
@@ -20,7 +23,8 @@ export const initialState = {
   gettingBook: false,
   error: '',
   token: localStorage.getItem('token'),
-  Logout: false
+  Logout: false,
+  book: null
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -95,9 +99,27 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         books: state.books.filter(book =>
-          action.payload.toLowerCase().includes(state.books.title.toLowerCase())
+          action.payload.toLowerCase().includes(book.title.toLowerCase())
         )
       };
+    case GET_STARTBOOK:
+      return {
+        ...state,
+        getttingBook: true
+      };
+
+    case GET_ERRORBOOK:
+      return {
+        ...state,
+        getttingBook: false
+      };
+    case GET_SUCCESSBOOK:
+      return {
+        ...state,
+        book: action.payload,
+        gettingBook: false
+      };
+
     default:
       return state;
   }

@@ -1,8 +1,9 @@
 .form {
   display: flex;
   flex-direction: column;
-  box-shadow: 0 5px 10px #ccc;
+
   width: 500px;
+  background-color: rgba(49, 67, 150, 0.9);
 }
 
 .input {
@@ -20,8 +21,8 @@ p {
   font-size: 13px;
   margin-top: 5px;
 }
-p span {
-  color: blue;
+p .account {
+  color: #ffc107;
 }
 
 .login-container {

@@ -14,6 +14,8 @@
   width: 300px;
   margin-top: 30px;
   padding: 10px;
+  border: 1px solid #eee;
+  outline: none;
 }
 .btn {
   width: 200px;

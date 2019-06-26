@@ -13,6 +13,10 @@ export const GET_START = 'GET_START';
 export const GET_SUCCESS = 'GET_SUCCESS';
 export const GET_ERROR = 'GET_ERROR';
 
+export const GET_STARTBOOK = 'GET_STARTBOOK';
+export const GET_SUCCESSBOOK = 'GET_SUCCESSBOOK';
+export const GET_ERRORBOOK = 'GET_ERRORBOOK';
+
 export const LOGOUT = 'LOGOUT';
 
 export const SEARCH = 'SEARCH';
@@ -30,7 +34,6 @@ export const login = state => dispatch => {
 };
 
 export const signup = state => dispatch => {
-  console.log(state);
   dispatch({type: SIGNUP_START});
   return axios
     .post('https://api-bookr.herokuapp.com/api/auth/register', state)
@@ -48,10 +51,21 @@ export const getBooks = () => dispatch => {
   return axiosWithAuth()
     .get('https://api-bookr.herokuapp.com/api/books')
     .then(res => {
-      console.log(res);
+      console.log(res.data);
       dispatch({type: GET_SUCCESS, payload: res.data.books});
     })
     .catch(err => ({type: GET_ERROR, payload: err.response}));
+};
+
+export const getSingleBook = id => dispatch => {
+  dispatch({type: GET_STARTBOOK});
+  return axiosWithAuth()
+    .get(`https://api-bookr.herokuapp.com/api/books/${id}`)
+    .then(res => {
+      console.log(res.data);
+      dispatch({type: GET_SUCCESSBOOK, payload: res.data.book});
+    })
+    .catch(err => ({type: GET_ERRORBOOK, payload: err.response}));
 };
 
 export const logout = () => {
