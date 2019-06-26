@@ -18,8 +18,13 @@ export const GET_SUCCESSBOOK = 'GET_SUCCESSBOOK';
 export const GET_ERRORBOOK = 'GET_ERRORBOOK';
 
 export const LOGOUT = 'LOGOUT';
+export const FAVORITE = 'FAVORITE';
 
 export const SEARCH = 'SEARCH';
+
+export const REVIEW_START = 'REVIEW_START';
+export const REVIEW_SUCCESS = 'REVIEW_SUCCESS';
+export const REVIEW_ERROR = 'REVIEW_ERROR';
 
 export const login = state => dispatch => {
   dispatch({type: LOGIN_START});
@@ -79,4 +84,24 @@ export const search = title => {
     type: SEARCH,
     payload: title
   };
+};
+export const favorite = id => {
+  console.log(id);
+  return {
+    type: FAVORITE,
+    payload: id
+  };
+};
+
+export const addReview = (review, id) => dispatch => {
+  dispatch({type: REVIEW_START});
+  return axiosWithAuth()
+    .post(`https://api-bookr.herokuapp.com/api/reviews/${id}`, review)
+    .then(res => {
+      console.log(res.data);
+      dispatch({type: REVIEW_SUCCESS, payload: res.data.book.reviews.content});
+    })
+    .catch(err => {
+      dispatch({type: REVIEW_ERROR, payload: err.response});
+    });
 };

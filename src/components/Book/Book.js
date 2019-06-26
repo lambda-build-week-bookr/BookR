@@ -1,6 +1,8 @@
 import React from 'react';
 import './Book.css';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {favorite} from '../../actions/index';
 
 const Book = props => {
   return (
@@ -14,10 +16,16 @@ const Book = props => {
         <div className='book-detail'>
           <h6>{props.book.title}</h6>
           <p>{props.book.publisher}</p>
+          <button onClick={() => props.favorite(props.book.id)} className='button'>
+            Favorite
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default Book;
+export default connect(
+  null,
+  {favorite}
+)(Book);

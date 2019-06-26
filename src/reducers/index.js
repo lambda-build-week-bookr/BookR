@@ -12,7 +12,11 @@ import {
   SEARCH,
   GET_SUCCESSBOOK,
   GET_ERRORBOOK,
-  GET_STARTBOOK
+  GET_STARTBOOK,
+  FAVORITE,
+  REVIEW_START,
+  REVIEW_SUCCESS,
+  REVIEW_ERROR
 } from '../actions';
 
 export const initialState = {
@@ -24,7 +28,10 @@ export const initialState = {
   error: '',
   token: localStorage.getItem('token'),
   Logout: false,
-  book: null
+  book: null,
+  favorite: [],
+  review: [],
+  postingReview: false
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -118,6 +125,32 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         book: action.payload,
         gettingBook: false
+      };
+
+    case FAVORITE:
+      console.log(state.favorite);
+      const fav = state.books.filter(book => book.id === action.payload);
+
+      return {
+        ...state,
+        favorite: state.favorite.concat(fav)
+      };
+
+    case REVIEW_START:
+      return {
+        ...state,
+        postingReview: true
+      };
+    case REVIEW_SUCCESS:
+      return {
+        ...state,
+        review: action.payload,
+        postingReview: false
+      };
+    case REVIEW_ERROR:
+      return {
+        ...state,
+        postingReview: false
       };
 
     default:

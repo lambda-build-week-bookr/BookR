@@ -7,6 +7,7 @@ import Login from './components/Login/Login';
 import BookList from './components/BookList/BookList';
 import SignUp from './components/SignUp/SignUp';
 import Book from './components/Book/Book';
+import Favorite from './components/Favorite/Favorite';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <PrivateRoute exact path='/booklist' component={BookList} />
         <Route exact path='/login' component={Login} />
         <Route path='/book/:id' component={Description} />
+        <Route path='/favorite' component={Favorite} />
       </div>
     </Router>
   );

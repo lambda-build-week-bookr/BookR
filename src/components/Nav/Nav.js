@@ -14,6 +14,9 @@ const Nav = props => {
       <Link className='home' onClick={() => props.logout()} to='/login'>
         Logout
       </Link>
+      <Link className='home' to='/favorite'>
+        Favorite
+      </Link>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import {getBooks} from '../../actions/index';
 import Nav from '../Nav/Nav';
 import Book from '../Book/Book';
 import SearchBox from '../SearchBox/SearchBox';
+import Favorite from '../Favorite/Favorite';
 
 class BookList extends Component {
   componentDidMount() {

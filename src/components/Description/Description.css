@@ -1,0 +1,15 @@
+.single {
+  display: flex;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(248, 153, 89, 0.4);
+}
+.title {
+  box-sizing: border-box;
+}
+.img {
+  width: 10%;
+}
+.summary {
+  padding: 20px 0;
+}
