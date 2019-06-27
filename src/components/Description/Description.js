@@ -39,14 +39,14 @@ class Description extends React.Component {
               <h5>
                 Author:
                 {this.props.book.authors.map(author => {
-                  return author;
+                  return author.name;
                 })}
               </h5>
-              <h6 className='review'>Review: {this.props.book.totalReviews}</h6>
+              <h6 className='review'>Review: {this.props.book.reviews.length}</h6>
               <h6>Average rating: {this.props.book.averageRating}</h6>
               <Review addReview={this.props.addReview} bookId={this.props.book.id} />
 
-              <ReactStars onChange={this.onChangeHandler} count={5} value={this.state.starCount} />
+              <ReactStars edit={false} count={5} value={this.props.book.averageRating} />
             </div>
           </div>
 
@@ -59,6 +59,7 @@ class Description extends React.Component {
           <div className='reviews'>
             <h4>Read Reviews</h4>
             {this.props.book.reviews.map(review => {
+              console.log('Map===> ', review);
               return (
                 <div className='comment'>
                   {review.review.length > 0 ? (

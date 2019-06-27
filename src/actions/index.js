@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import jwtDecode from 'jwt-decode';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -20,8 +21,6 @@ export const GET_ERRORBOOK = 'GET_ERRORBOOK';
 export const LOGOUT = 'LOGOUT';
 export const FAVORITE = 'FAVORITE';
 
-export const SEARCH = 'SEARCH';
-
 export const REVIEW_START = 'REVIEW_START';
 export const REVIEW_SUCCESS = 'REVIEW_SUCCESS';
 export const REVIEW_ERROR = 'REVIEW_ERROR';
@@ -31,9 +30,11 @@ export const login = state => dispatch => {
   return axiosWithAuth()
     .post('https://api-bookr.herokuapp.com/api/auth/login', state)
     .then(res => {
+      const userInfo = jwtDecode(res.data.user.token);
+      console.log(userInfo);
       console.log(res);
       localStorage.setItem('token', res.data.user.token);
-      dispatch({type: LOGIN_SUCCESS, payload: res.data.payload});
+      dispatch({type: LOGIN_SUCCESS, payload: userInfo});
     })
     .catch(err => console.log(err.response));
 };
@@ -79,12 +80,6 @@ export const logout = () => {
   };
 };
 
-export const search = title => {
-  return {
-    type: SEARCH,
-    payload: title
-  };
-};
 export const favorite = id => {
   console.log(id);
   return {
@@ -100,11 +95,17 @@ export const addReview = (review, id) => dispatch => {
     .post(`https://api-bookr.herokuapp.com/api/reviews/${id}`, review)
     .then(res => {
       console.log('NO ERRORRRRR');
-      console.log(res.data);
-      dispatch({type: REVIEW_SUCCESS, payload: res.data.book.reviews.content});
+      console.log('LOOk for this ====> ', res.data.review, res.data, res.data.content);
+      dispatch({
+        type: REVIEW_SUCCESS,
+        payload: {
+          rating: res.data.review.rating,
+          review: res.data.review.content
+        }
+      });
     })
     .catch(err => {
-      console.log('ERROORRRRR');
+      console.log('ERROORRRRR', err);
       dispatch({type: REVIEW_ERROR, payload: err.response});
     });
 };

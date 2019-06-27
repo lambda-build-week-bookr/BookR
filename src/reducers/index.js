@@ -9,7 +9,6 @@ import {
   SIGNUP_ERROR,
   GET_ERROR,
   LOGOUT,
-  SEARCH,
   GET_SUCCESSBOOK,
   GET_ERRORBOOK,
   GET_STARTBOOK,
@@ -31,7 +30,8 @@ export const initialState = {
   book: null,
   favorite: [],
   review: [],
-  postingReview: false
+  postingReview: false,
+  username: ''
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -45,7 +45,7 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        token: action.payload
+        username: action.payload.username
       };
     case LOGIN_ERROR:
       return {
@@ -84,13 +84,13 @@ export const rootReducer = (state = initialState, action) => {
       console.log(state);
       return {
         ...state,
-        gettingBooks: false,
+        gettingBook: false,
         books: action.payload
       };
     case GET_ERROR:
       return {
         ...state,
-        gettingBooks: false,
+        gettingBook: false,
         err: action.payload
       };
     case LOGOUT:
@@ -101,14 +101,6 @@ export const rootReducer = (state = initialState, action) => {
         token: localStorage.clear()
       };
 
-    case SEARCH:
-      console.log(state.books);
-      return {
-        ...state,
-        books: state.books.filter(book =>
-          action.payload.toLowerCase().includes(book.title.toLowerCase())
-        )
-      };
     case GET_STARTBOOK:
       return {
         ...state,
@@ -142,9 +134,17 @@ export const rootReducer = (state = initialState, action) => {
         postingReview: true
       };
     case REVIEW_SUCCESS:
+      console.log('action payload==> ', action.payload);
+      console.log('state Array ===> ', [
+        ...state.book.reviews,
+        {...action.payload, username: state.username}
+      ]);
       return {
         ...state,
-        review: action.payload,
+        book: {
+          ...state.book,
+          reviews: [...state.book.reviews.concat({...action.payload, username: state.username})]
+        },
         postingReview: false
       };
     case REVIEW_ERROR:

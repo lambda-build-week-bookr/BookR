@@ -63,15 +63,13 @@ class Reviews extends Component {
                     name='review'
                   />
                   <ReactStars onChange={this.onChangeHandler} count={5} value={this.state.rating} />
+                  <div class='modal-footer'>
+                    <button type='button' class='btn btn-secondary' data-dismiss='modal'>
+                      Close
+                    </button>
+                    <button class='btn btn-primary'>Post</button>
+                  </div>
                 </form>
-              </div>
-              <div class='modal-footer'>
-                <button type='button' class='btn btn-secondary' data-dismiss='modal'>
-                  Close
-                </button>
-                <button onClick={this.addComment} type='button' class='btn btn-primary'>
-                  Post
-                </button>
               </div>
             </div>
           </div>

@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-
-import {search} from '../../actions/index';
 
 import './SearchBox.css';
 
@@ -14,18 +11,13 @@ class SearchBox extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-  };
-
-  searchItem = e => {
-    e.preventDefault();
-    if (this.state.searchItem.length === 0) return this.props.search('');
-    this.props.search(this.state.searchItem);
+    this.props.searchBox(this.state.searchItem);
   };
 
   render() {
     return (
       <div className='search-box'>
-        <form onSubmit={this.searchItem}>
+        <form>
           <input
             type='text'
             placeholder='Search title....'
@@ -39,13 +31,5 @@ class SearchBox extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    books: state.books
-  };
-};
 
-export default connect(
-  mapStateToProps,
-  {search}
-)(SearchBox);
+export default SearchBox;
