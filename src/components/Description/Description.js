@@ -1,15 +1,25 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ReactStars from 'react-stars';
 
-import {getSingleBook} from '../../actions/index';
+import {getSingleBook, addReview} from '../../actions/index';
 import './Description.css';
 import Nav from '../Nav/Nav';
 import Review from '../Reviews/Reviews';
 
 class Description extends React.Component {
+  state = {
+    starCount: 0
+  };
   componentDidMount() {
     this.props.getSingleBook(this.props.match.params.id);
   }
+
+  onChangeHandler = rating => {
+    this.setState({
+      starCount: rating
+    });
+  };
 
   render() {
     if (!this.props.book) {
@@ -32,10 +42,11 @@ class Description extends React.Component {
                   return author;
                 })}
               </h5>
-
               <h6 className='review'>Review: {this.props.book.totalReviews}</h6>
               <h6>Average rating: {this.props.book.averageRating}</h6>
-              <Review />
+              <Review addReview={this.props.addReview} bookId={this.props.book.id} />
+
+              <ReactStars onChange={this.onChangeHandler} count={5} value={this.state.starCount} />
             </div>
           </div>
 
@@ -74,7 +85,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {getSingleBook}
+  {getSingleBook, addReview}
 )(Description);
 
 //{this.props.book && <p>{this.props.book.title}</p>}

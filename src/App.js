@@ -17,6 +17,8 @@ function App() {
         <Route exact path='/signup' component={SignUp} />
         <PrivateRoute exact path='/booklist' component={BookList} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/' component={Login} />
+
         <Route path='/book/:id' component={Description} />
         <Route path='/favorite' component={Favorite} />
       </div>

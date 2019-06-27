@@ -94,14 +94,17 @@ export const favorite = id => {
 };
 
 export const addReview = (review, id) => dispatch => {
+  console.log(review, id);
   dispatch({type: REVIEW_START});
   return axiosWithAuth()
     .post(`https://api-bookr.herokuapp.com/api/reviews/${id}`, review)
     .then(res => {
+      console.log('NO ERRORRRRR');
       console.log(res.data);
       dispatch({type: REVIEW_SUCCESS, payload: res.data.book.reviews.content});
     })
     .catch(err => {
+      console.log('ERROORRRRR');
       dispatch({type: REVIEW_ERROR, payload: err.response});
     });
 };

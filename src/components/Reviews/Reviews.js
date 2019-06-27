@@ -1,19 +1,29 @@
 import React, {Component} from 'react';
+import ReactStars from 'react-stars';
 
 class Reviews extends Component {
   state = {
-    comment: ''
+    review: '',
+    rating: 0
   };
 
   handleChange = e => {
     this.setState({
+      ...this.state,
       [e.target.name]: e.target.value
+    });
+  };
+  onChangeHandler = rating => {
+    this.setState({
+      ...this.state,
+      rating: rating
     });
   };
 
   addComment = e => {
+    console.log(this.props);
     e.preventDefault();
-    this.props.addReview(this.state, this.props.match.params.id);
+    this.props.addReview(this.state, this.props.bookId);
   };
   render() {
     return (
@@ -26,7 +36,6 @@ class Reviews extends Component {
         >
           Add Review
         </button>
-
         <div
           class='modal fade'
           id='exampleModal'
@@ -46,20 +55,21 @@ class Reviews extends Component {
                 </button>
               </div>
               <div class='modal-body'>
-                <form onSubmit={this.addReview}>
+                <form onSubmit={this.addComment}>
                   <input
                     type='text'
                     placeholder='comment...'
                     onChange={this.handleChange}
-                    name='comment'
+                    name='review'
                   />
+                  <ReactStars onChange={this.onChangeHandler} count={5} value={this.state.rating} />
                 </form>
               </div>
               <div class='modal-footer'>
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>
                   Close
                 </button>
-                <button type='button' class='btn btn-primary'>
+                <button onClick={this.addComment} type='button' class='btn btn-primary'>
                   Post
                 </button>
               </div>
