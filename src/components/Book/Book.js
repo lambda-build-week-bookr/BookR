@@ -17,8 +17,8 @@ const Book = props => {
           <h6>{props.book.title}</h6>
           <p>{props.book.publisher}</p>
           <p>ISBN: {props.book.isbn}</p>
-          <button onClick={() => props.favorite(props.book.id)} className='button'>
-            Favorite
+          <button onClick={() => props.favorite(props.book.id)} type='button' class='btn-danger'>
+            Add to favorite
           </button>
         </div>
       </div>

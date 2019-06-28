@@ -8,10 +8,14 @@ class SearchBox extends Component {
   };
 
   handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-    this.props.searchBox(this.state.searchItem);
+    this.setState(
+      {
+        [e.target.name]: e.target.value
+      },
+      () => {
+        this.props.searchBox(this.state.searchItem);
+      }
+    );
   };
 
   render() {

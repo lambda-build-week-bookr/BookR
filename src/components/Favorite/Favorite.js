@@ -4,6 +4,10 @@ import {connect} from 'react-redux';
 import Nav from '../Nav/Nav';
 
 class Favorite extends Component {
+  // random = arr => {
+  //   const idx = Math.floor(Math.random() * arr.length);
+  //   return arr[idx];
+  // };
   render() {
     console.log(this.props.favorite);
     return (
@@ -37,7 +41,8 @@ class Favorite extends Component {
 }
 const mapStateToProps = state => {
   return {
-    favorite: state.favorite
+    favorite: state.favorite,
+    books: state.books
   };
 };
 

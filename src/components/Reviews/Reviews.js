@@ -48,7 +48,7 @@ class Reviews extends Component {
             <div class='modal-content'>
               <div class='modal-header'>
                 <h5 class='modal-title' id='exampleModalLabel'>
-                  Modal title
+                  Add Review
                 </h5>
                 <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                   <span aria-hidden='true'>&times;</span>
@@ -61,6 +61,7 @@ class Reviews extends Component {
                     placeholder='comment...'
                     onChange={this.handleChange}
                     name='review'
+                    className='form-control form-control-lg '
                   />
                   <ReactStars onChange={this.onChangeHandler} count={5} value={this.state.rating} />
                   <div class='modal-footer'>

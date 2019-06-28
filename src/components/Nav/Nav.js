@@ -11,11 +11,11 @@ const Nav = props => {
       <Link className='home' to='/booklist'>
         Home
       </Link>
-      <Link className='home' onClick={() => props.logout()} to='/login'>
-        Logout
-      </Link>
       <Link className='home' to='/favorite'>
         Favorite
+      </Link>
+      <Link className='home' onClick={() => props.logout()} to='/login'>
+        Logout
       </Link>
     </div>
   );

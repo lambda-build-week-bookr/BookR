@@ -20,12 +20,19 @@ class BookList extends Component {
   searchBook = search => {
     // if(typeof(search === "number"))
     let filtered = this.props.books.filter(book => {
-      return book.title.toLowerCase().includes(search.toLowerCase());
+      return book.title.toLowerCase().includes(search.toLowerCase()) || book.isbn.includes(search);
     });
 
     this.setState({
       searchData: filtered
     });
+    console.log('search.lenght====> ', search.length);
+    if (search.length <= 0) {
+      console.log('length 0 ');
+      this.setState({
+        searchData: this.props.books
+      });
+    }
   };
 
   render() {

@@ -31,7 +31,8 @@ export const initialState = {
   favorite: [],
   review: [],
   postingReview: false,
-  username: ''
+  username: '',
+  itemList: []
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -120,12 +121,14 @@ export const rootReducer = (state = initialState, action) => {
       };
 
     case FAVORITE:
-      console.log(state.favorite);
       const fav = state.books.filter(book => book.id === action.payload);
+
+      // localStorage.setItem('favorite', JSON.stringify(state.favorite));
 
       return {
         ...state,
         favorite: state.favorite.concat(fav)
+        // itemList: localStorage.getItem('favorite')
       };
 
     case REVIEW_START:

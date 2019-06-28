@@ -62,11 +62,13 @@ class Description extends React.Component {
               console.log('Map===> ', review);
               return (
                 <div className='comment'>
+                  {console.log(review)}
                   {review.review.length > 0 ? (
-                    (review.username, review.review)
+                    `${review.username}: ${review.review} ${review.rating}`
                   ) : (
                     <h5>Be the first one to write the review</h5>
                   )}
+                  <ReactStars edit={false} count={5} value={review.rating} />
                 </div>
               );
             })}
